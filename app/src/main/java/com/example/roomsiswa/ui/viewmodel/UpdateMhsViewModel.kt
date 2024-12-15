@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roomsiswa.data.entity.Mahasiswa
 import com.example.roomsiswa.repository.RepositoryMhs
+import com.example.roomsiswa.ui.navigation.DestinasiUpdate
 import com.example.roomsiswa.ui.viewmodel.MahasiswaViewModel.MhsUIState
 import com.example.roomsiswa.ui.viewmodel.MahasiswaViewModel.MahasiswaEvent
 import com.example.roomsiswa.ui.viewmodel.MahasiswaViewModel.FormErrorState
@@ -23,7 +24,7 @@ class UpdateMhsViewModel(
     var updateUIState by mutableStateOf(MhsUIState())
         private set
 
-    private val _nim: String = checkNotNull(savedStateHandle[DestinasiEdit.NIM])
+    private val _nim: String = checkNotNull(savedStateHandle[DestinasiUpdate.NIM])
 
     init {
         viewModelScope.launch {
@@ -87,5 +88,5 @@ class UpdateMhsViewModel(
     }
 }
 fun Mahasiswa.toUIStateMhs(): MhsUIState = MhsUIState(
-    mahasiswaEvent = this.toDetailEvent(),
+    mahasiswaEvent = this.toDetailUiEvent(),
 )

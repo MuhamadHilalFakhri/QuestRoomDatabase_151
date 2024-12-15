@@ -54,7 +54,7 @@ class DetailMahasiswaViewModel(
         )
 
     fun deleteMhs(){
-        detailUiState.value.detailUiEvent.toMahasiswaEvent().let{
+        detailUiState.value.detailUiEvent.toMahasiswaEntity().let{
             viewModelScope.launch {
                 repositoryMhs.deleteMhs(it)
             }
@@ -86,4 +86,13 @@ fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent{
         angkatan = angkatan
     )
 }
+
+fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa = Mahasiswa(
+    nim = nim,
+    nama = nama,
+    jenisKelamin = jenisKelamin,
+    alamat = alamat,
+    kelas = kelas,
+    angkatan = angkatan
+)
 

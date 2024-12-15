@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -37,13 +38,15 @@ import com.example.roomsiswa.ui.costumwidget.CustomTopAppBar
 import com.example.roomsiswa.ui.viewmodel.DetailMahasiswaViewModel
 import com.example.roomsiswa.ui.viewmodel.DetailUiState
 import com.example.roomsiswa.ui.viewmodel.PenyediaViewModel
+import com.example.roomsiswa.ui.viewmodel.toMahasiswaEntity
 
 @Composable
 fun DetailMhsView(
     modifier: Modifier = Modifier,
-    viewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    viewModel: DetailMahasiswaViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onBack: () -> Unit = { },
-    onDeleteClick: () -> Unit = { }
+    onDeleteClick: () -> Unit = { },
+    onEditClick: (String) -> Unit = {}
 ){
     Scaffold (
         topBar = {
@@ -57,7 +60,7 @@ fun DetailMhsView(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    onEditClick(viewModel.detailUiState.detailUiEvent.nim)
+                    onEditClick(viewModel.detailUiState.value.detailUiEvent.nim)
                 },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(16.dp)
