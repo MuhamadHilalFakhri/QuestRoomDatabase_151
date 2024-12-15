@@ -1,6 +1,7 @@
 package com.example.roomsiswa.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.roomsiswa.data.entity.Mahasiswa
@@ -17,4 +18,7 @@ interface MahasiswaDao {
 
     @Query("SELECT * FROM mahasiswa WHERE nim = :nim")
     fun  getMahasiswa(nim: String): Flow<Mahasiswa>
+
+    @Delete
+    suspend fun deleteMahasiswa(mahasiswa: Mahasiswa)
 }
