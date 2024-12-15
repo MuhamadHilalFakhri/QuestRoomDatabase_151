@@ -1,8 +1,17 @@
 package com.example.roomsiswa.ui.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.example.roomsiswa.data.entity.Mahasiswa
+import com.example.roomsiswa.repository.RepositoryMhs
 import com.example.roomsiswa.ui.viewmodel.MahasiswaViewModel.MahasiswaEvent
 
+class DetailMahasiswaViewModel(
+    savedStateHandle: SavedStateHandle,
+    private val repositoryMhs: RepositoryMhs,
+) : ViewModel(){
+
+}
 
 data class DetailUiState(
     val detailUiEvent: MahasiswaEvent = MahasiswaEvent(),
